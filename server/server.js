@@ -44,7 +44,7 @@ app.use('/api', currencyCountryNameRoute); // Use currency-countryName route
     );
 
     // Sync models with the database and force dropping tables if they exist
-    await sequelize.sync({ alter: false });
+    await sequelize.sync({ force: false });
     console.log('Models synchronized with the database and tables recreated.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
@@ -53,7 +53,7 @@ app.use('/api', currencyCountryNameRoute); // Use currency-countryName route
 
 // Server listening on port 3001
 const PORT = 3001;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
 
@@ -61,3 +61,5 @@ app.listen(PORT, () => {
 app.use((request, response) => {
   response.status(404).json({ error: 'unknown endpoint' });
 });
+
+module.exports = server;

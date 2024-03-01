@@ -14,11 +14,6 @@ const Conversion = () => {
     setConvertedAmount('123.45'); // Example converted amount
   };
 
-  const handleShowConvertedAmount = () => {
-    // Placeholder for showing converted amount
-    console.log('Converted Amount:', convertedAmount);
-  };
-
   return (
     <div className="conversion-container">
       <h2>Conversion</h2>
@@ -46,10 +41,8 @@ const Conversion = () => {
         <button type="button" onClick={handleConvert}>
           Convert
         </button>
-        <button type="button" onClick={handleShowConvertedAmount}>
-          Converted Amount
-        </button>
       </div>
+      {convertedAmount && <p>Converted Amount: {convertedAmount}</p>}
     </div>
   );
 };

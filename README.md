@@ -1,38 +1,43 @@
-# Mini Project: React Programming - Assignment 3
+# Project Part 4: Testing REST Requests
+
+This is Part 4 of the project, which focuses on testing REST requests. The project consists of two parts: the client and the server. It involves unit testing and using supertest for REST API testing.
 
 ## Overview
 
-This mini-project is part of Assignment 3 in the React programming course. The objective is to create a web application using React.js for managing currencies. Before starting, ensure that there are some countries added to the "countries" table in the database, as currencies are related to countries and have a foreign key constraint.
+This project, developed by Samaneh Razmi, emphasizes testing the communication between the client and server using REST requests. The client sends requests to the server, which processes them and sends back responses. The goal is to ensure that these interactions work correctly.
 
-## Prerequisites
+## Running Tests
 
-Before running the project, make sure you have the following:
+To run tests for both the client and the server, you can use the following command within each respective directory:
 
-- Node.js installed on your machine.
-- Access to the PostgreSQL database server.
-- Environment variables set up for the database connection (see the `.env` file).
+### Server
 
-## Features
+Navigate to the `server` directory and run:
 
-- **Add Currency:** Add a new currency by specifying the currency code, country, and conversion rate.
-- **Update Currency:** Update the conversion rate of an existing currency.
-- **Delete Currency:** Remove a currency from the database.
+```
+npm test
+```
 
-## Folder Structure
+This command executes the test suite for the server, including unit tests and REST API tests using supertest. It verifies that requests are properly processed by the server and that responses are returned as expected.
 
-- **src/components:** Contains React components for different sections of the application.
+### Client
 
-## Technologies Used
+Similarly, navigate to the `client` directory and run:
 
-- React.js
-- Node.js
-- Express.js
-- PostgreSQL
+```
+npm test
+```
+
+This command executes the test suite for the client. It verifies the functionality of the client-side code, including interactions with the server through REST requests.
+
+## Testing Strategy
+
+The testing strategy includes unit tests to ensure individual components of both the client and server function correctly. Additionally, REST API tests are conducted using supertest to verify the behavior of the server when receiving various types of requests. These tests help maintain the reliability and functionality of both the client and server.
 
 ## Database Configuration
 
-Ensure that the `.env` file contains the correct database connection details. The database should be named "SamaneRazmi" and have the necessary tables created for currencies and countries.
+The database configuration settings are stored in a `.env` file located within the `server` folder. This file contains sensitive information such as database credentials and connection details, which are necessary for testing and interacting with the database during tests.
 
-## Contributors
+## Conclusion
 
-- Samaneh Razmi
+Testing REST requests is crucial for ensuring the reliability and functionality of both the client and server. By running tests regularly and addressing any issues that arise, developers can maintain a high level of confidence in the performance and behavior of the entire application.

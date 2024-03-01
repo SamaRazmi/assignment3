@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Currency = require('../models/Currency');
+let Currency;
+
+if (process.env.NODE_ENV === 'test') {
+  Currency = require('../models/testCurrency');
+} else {
+  Currency = require('../models/Currency');
+}
 
 // Get all currencies
 const getCurrencies = async (req, res) => {
@@ -30,13 +36,21 @@ const getCurrencyById = async (req, res) => {
 
 // Create a new currency
 const createCurrency = async (req, res) => {
-  const { currencyCode, countryId, conversionRate } = req.body;
+  const { currencyCode, conversionRate, countryId } = req.body;
   try {
-    const currency = await Currency.create({
-      currencyCode,
-      countryId,
-      conversionRate,
-    });
+    let currency;
+    if (process.env.NODE_ENV === 'test') {
+      currency = await Currency.create({
+        currencyCode,
+        conversionRate,
+      });
+    } else {
+      currency = await Currency.create({
+        currencyCode,
+        countryId,
+        conversionRate,
+      });
+    }
     res.status(201).json(currency);
   } catch (error) {
     console.error('Error creating currency:', error);
